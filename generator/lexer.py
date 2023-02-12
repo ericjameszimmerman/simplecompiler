@@ -100,6 +100,9 @@ class Lexer:
                     elif c == '#':
                         self.state = self.STATE_LINECOMMENT
                         value = ''
+                    elif c == '"':
+                        self.state = self.STATE_QUOTED
+                        value = ''
                     elif c in self.special_characters:
                         result = self.evaluate_operator_value(c)
                         self.state = self.STATE_NORMAL

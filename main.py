@@ -1,5 +1,6 @@
 from generator import Lexer
-
+from generator import Parser
+from generator import SyntaxTree
 
 def cli_main():
     filename = "D:\\Projects\\lexer\\test1.dmod"
@@ -9,13 +10,10 @@ def cli_main():
         data = f.read()
 
     lexer = Lexer(data)
-
-    while True:
-        token = lexer.get_token()
-        if token:
-            print(f'text = "{token.text}", kind = "{token.kind}"')
-        else:
-            break
+    data = SyntaxTree()
+    parser = Parser(lexer, data)
+    parser.parse()
+    print(data)
 
 
 if __name__ == '__main__':
